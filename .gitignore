@@ -21,3 +21,13 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw*
+
+README.md
+dist
+package-lock.json
+public
+vue.config.js
+babel.config.js
+node_modules
+package.json
+src
