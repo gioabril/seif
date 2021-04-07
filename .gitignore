@@ -23,11 +23,12 @@ yarn-error.log*
 *.sw*
 
 README.md
-dist
 package-lock.json
+/public
 public
 vue.config.js
 babel.config.js
-node_modules
+/node_modules
 package.json
+/src
 src
