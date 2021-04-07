@@ -1,6 +1,5 @@
 .DS_Store
 node_modules
-/dist
 
 #packge-lock se supone debe versionarse pero realmente causa más problemas que soluciones
 package-lock.json
