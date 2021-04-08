@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
+src
 
 #packge-lock se supone debe versionarse pero realmente causa más problemas que soluciones
 package-lock.json
@@ -31,5 +32,4 @@ vue.config.js
 babel.config.js
 /node_modules
 package.json
-/src
-src
+
