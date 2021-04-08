@@ -1,12 +1,14 @@
 <template>
   <div id="app">
+    <v-app>
     <div id="nav">
       <h2>Centro de Ayuda SEIF</h2>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <!-- <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> -->
     </div>
     <router-view/>
     <!-- <nav-bar/> -->
+    </v-app>
   </div>
 </template>
 <script>
@@ -35,6 +37,7 @@ export default {
 
 #nav {
   padding: 30px;
+  text-align: center;
   a {
     font-weight: bold;
     color: #2c3e50;
@@ -72,7 +75,7 @@ export default {
   src: url("./assets/fonts/SourceSansPro-SemiBold.ttf");
 }
 @font-face {
-  font-family: FontBaseLight;
+  font-family: FontBase-Light;
   src: url("./assets/fonts/SourceSansPro-Light.ttf");
 }
 

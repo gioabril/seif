@@ -1,54 +1,51 @@
 <template>
   <div class="home">
-    <v-container >
-      <v-layout row wrap>
-        <v-flex xs12>
-          <v-btn color="orange" v-bind="attrs" v-on="on">Añadir material de apoyo</v-btn>
+    <v-container>
+      <v-layout row wrap justify-center align-center>
+        <v-flex xs12 class="sect-button">
+          <router-link to="/admin">
+            <v-btn color="#f0bc5e" v-bind="attrs" v-on="on">Añadir material de apoyo</v-btn>
+          </router-link>
         </v-flex>
-        <v-flex xs12 >
+        <v-flex xs12 class="sect-title">
           <h2>Nuestros Productos</h2>
         </v-flex>
       </v-layout>
       <v-layout row wrap justify-center align-center class="container-items">
-        <v-flex xs12 md4 sm4 v-for="(item, i) in items" :key="'item'+i" class="item">
-          <div class="icon-item">
-            <!-- <img :src="required('@/assets/icons/'+item.imgurl+'')" alt=""> -->
+        <v-flex xs12 md4 sm4 v-for="(item, i) in items" :key="'item'+i" class="item animated flipInY" :class="'dura-'+i">
+          <div class="container-item">
+            <div class="icon-item">
+              <img :src="require('@/assets/icons/'+item.imgurl+'')" alt="">
+            </div>
+            <p>{{item.tituloitem}}</p>
+            <v-btn class="item-btn" color="orange" v-bind="attrs" v-on="on">ver</v-btn>
           </div>
-          <p>{{item.tituloitem}}</p>
-          <v-btn color="orange" v-bind="attrs" v-on="on">ver</v-btn>
         </v-flex>
       </v-layout>
     </v-container>
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+
   </div>
-  
+
 </template>
-
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
   name: 'Home',
-  // components: {
-  //   HelloWorld
-  // }
   data: () => ({
     items:[
       {
-        imgurl:'006-browser.svg',
+        imgurl:'007-code.svg',
         tituloitem:'Seif',
       },
       {
-        imgurl:'006-browser.svg',
+        imgurl:'013-hacker.svg',
         tituloitem:'Seif módulos',
       },
       {
-        imgurl:'006-browser.svg',
+        imgurl:'020-script.svg',
         tituloitem:'Controller',
       },
       {
-        imgurl:'006-browser.svg',
+        imgurl:'027-web-design.svg',
         tituloitem:'Visitantes robustos',
       },
       {
@@ -56,18 +53,15 @@ export default {
         tituloitem:'PTT',
       },
       {
-        imgurl:'006-browser.svg',
+        imgurl:'016-machine.svg',
         tituloitem:'Controlpharm',
       },
     ]
   }),
-  created() {
-
-  },
 }
 </script>
 
 <style lang="scss" scoped>
 @import './home.scss';
-
+@import '../sass/globals.scss';
 </style>
