@@ -1,23 +1,19 @@
 <template>
   <div id="app">
     <v-app>
-    <div id="nav">
-      <h2>Centro de Ayuda SEIF</h2>
-      <!-- <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> -->
-    </div>
-    <router-view/>
-    <!-- <nav-bar/> -->
+      <div id="nav"><h2>Centro de Ayuda SEIF</h2> </div>
+      <router-view/>
+      <nav-bar/>
     </v-app>
   </div>
 </template>
 <script>
-// import navBar from '@/components/nav-bar.vue'
+import navBar from '@/components/nav-bar.vue'
 export default {
   name: "App",
-  // components:{
-  //   navBar
-  // }
+  components:{
+    navBar
+  }
 }
 </script>
 
@@ -28,16 +24,21 @@ export default {
   text-align: center;
   color: #2c3e50;
   width: 100%;
-  padding: 10px!important;
   font-size: 16px;
   font-family: FontBase-Regular;
   text-align: center;
-
 }
 
 #nav {
   padding: 30px;
   text-align: center;
+  // background: #012362;
+  color: #012362;
+  text-align: left;
+  padding-left: 80px;
+  font-size: 1em;
+  font-family: FontBase-Bold;
+  line-height: 1.3em;
   a {
     font-weight: bold;
     color: #2c3e50;
@@ -45,6 +46,11 @@ export default {
     &.router-link-exact-active {
       color: #42b983;
     }
+  }
+  @media screen and(max-width: 600px) {
+    padding-left: 0px;
+    padding: 10px;
+    font-size: 0.9em;
   }
 }
 /********************  FONTS ********************/

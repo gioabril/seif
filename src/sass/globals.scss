@@ -13,4 +13,11 @@ body, html {
       overflow-y: auto;
     }
   }
+.general-container{
+  margin-left: 60px;
+  @media screen and(max-width:600px) {
+    margin-left: 0px;
+    padding-bottom: 45px;
+  }
+}
   

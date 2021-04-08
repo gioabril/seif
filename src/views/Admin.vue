@@ -1,5 +1,5 @@
 <template>
-  <div class="admin">
+  <div class="admin general-container">
     <v-container>
       <v-layout row wrap justify-center align-center>
         <v-flex xs12 class="cont-title">

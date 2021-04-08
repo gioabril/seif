@@ -11,6 +11,9 @@ a{
 .sect-button{
     background: $color-backgrey;
     padding: 30px;
+    @media screen and(max-width: 600px) {
+        padding: 10px;
+    }
 }
 // CLASES PARA EL TITULO
 .sect-title{
@@ -24,6 +27,12 @@ a{
         color:$color-ntitlesdark;
         font-size: 2.5em;
         font-family: FontBase-Light;
+        line-height: 1em;
+    }
+    @media screen and(max-width: 600px) {
+        h2{
+            font-size: 1.8em;
+        }
     }
 }
 
@@ -62,6 +71,25 @@ a{
             margin-top: 10px;
         }
         
+    }
+    @media screen and(max-width: 600px) {
+        margin-top: 10px;
+        .container-item{
+            width: 90%;
+            .icon-item{
+                width: 90px;
+                height: 90px;
+                padding: 2px;
+            }
+            p{
+                font-size: 1em;
+                line-height: 1.3em;
+                margin: 0;
+            }
+            .item-btn{
+                margin-top: 3px;
+            }
+        }
     }
 }
 

@@ -22,13 +22,13 @@
                     <v-text-field  v-model="editedItem.name"  label="Número"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6"  md="4">
-                    <v-text-field  v-model="editedItem.fecha"  label="Fecha"></v-text-field>
-                      <v-menu v-model="menu2" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y min-width="auto">
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-text-field v-model="date" label="Picker without buttons" prepend-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"></v-text-field>
-                        </template>
-                        <v-date-picker v-model="date" @input="menu2 = false"></v-date-picker>
-                      </v-menu>
+                    <!-- <v-text-field  v-model="editedItem.fecha"  label="Fecha"></v-text-field> -->
+                    <v-menu v-model="menu2" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y min-width="auto">
+                      <template v-slot:activator="{ on, attrs }">
+                        <v-text-field v-model="editedItem.fecha" label="Selecciona la fecha" prepend-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"></v-text-field>
+                      </template>
+                      <v-date-picker v-model="editedItem.fecha" @input="menu2 = false"></v-date-picker>
+                    </v-menu>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field  v-model="editedItem.modulo"  label="Módulo"></v-text-field>
@@ -130,7 +130,7 @@
         { text: 'ID Pregunta', align: 'start', sortable: true, value: 'name'},
         { text: 'Fecha de creación', value: 'fecha' },
         { text: 'Módulo', value: 'modulo' },
-        { text: 'Categoria', value: 'categoria' },
+        { text: 'Categoría', value: 'categoria' },
         { text: 'Pregunta', value: 'pregunta' },
         { text: 'Respuesta', value: 'respuesta' },
         { text: 'Actions', value: 'actions', sortable: false },
@@ -139,7 +139,7 @@
       editedIndex: -1,
       editedItem: {
         name:'',
-        fecha:'',
+        fecha:new Date().toISOString().substr(0, 10),
         modulo:'',
         categoria:'',
         pregunta:'',
@@ -147,7 +147,7 @@
       },
       defaultItem: {
         name:'',
-        fecha:'',
+        fecha:new Date().toISOString().substr(0, 10),
         modulo:'',
         categoria:'',
         pregunta:'',
@@ -179,7 +179,7 @@
         this.desserts = [
           {
             name:1,
-            fecha:'03/03/202104:14',
+            fecha:'2021-04-09',
             modulo:'Configuración',
             categoria:'Login',
             pregunta:'Como valido mi código de conexión',
@@ -187,7 +187,7 @@
           },
           {
             name:2,
-            fecha:'03/08/202104:14',
+            fecha:'2021-01-09',
             modulo:'Configuración',
             categoria:'Login',
             pregunta:'Como valido mi código de conexión',
@@ -195,7 +195,7 @@
           },
           {
             name:3,
-            fecha:'01/03/202104:14',
+            fecha:'2019-04-09',
             modulo:'Configuración',
             categoria:'Otro',
             pregunta:'Como valido mi código de conexión',
