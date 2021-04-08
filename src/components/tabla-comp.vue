@@ -1,10 +1,11 @@
 <template>
-  <v-data-table :headers="headers" :items="desserts" sort-by="calories" class="elevation-1">
+  <v-data-table :headers="headers" :items="desserts" sort-by="name" class="elevation-2">
     <template v-slot:top>
       <v-toolbar flat>
         <v-toolbar-title></v-toolbar-title>
         <v-divider class="mx-4" inset vertical></v-divider>
         <v-spacer></v-spacer>
+        <!-- CONTENID DE TABLA Y MODAL PRINCIPAL -->
         <v-dialog v-model="dialog" max-width="800px" >
           <template v-slot:activator="{ on, attrs }">
             <v-btn color="#f0bc5e" light class="mb-2" v-bind="attrs" v-on="on">
@@ -12,29 +13,28 @@
             </v-btn>
           </template>
           <v-card>
-            <v-card-title>
+            <v-card-title class="title-modal">
               <span class="headline">{{ formTitle }}</span>
             </v-card-title>
             <v-card-text>
               <v-container>
                 <v-row>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field  v-model="editedItem.name"  label="Número"></v-text-field>
+                    <v-text-field  v-model="editedItem.name" label="Número"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6"  md="4">
-                    <!-- <v-text-field  v-model="editedItem.fecha"  label="Fecha"></v-text-field> -->
                     <v-menu v-model="menu2" :close-on-content-click="false" :nudge-right="40" transition="scale-transition" offset-y min-width="auto">
                       <template v-slot:activator="{ on, attrs }">
                         <v-text-field v-model="editedItem.fecha" label="Selecciona la fecha" prepend-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"></v-text-field>
                       </template>
-                      <v-date-picker v-model="editedItem.fecha" @input="menu2 = false"></v-date-picker>
+                      <v-date-picker color="#012362" v-model="editedItem.fecha" @input="menu2 = false"></v-date-picker>
                     </v-menu>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field  v-model="editedItem.modulo"  label="Módulo"></v-text-field>
+                    <v-text-field v-model="editedItem.modulo" label="Módulo"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
-                    <v-text-field  v-model="editedItem.categoria"  label="Categoría"></v-text-field>
+                    <v-text-field v-model="editedItem.categoria" label="Categoría"></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field v-model="editedItem.pregunta" label="Pregunta"></v-text-field>
@@ -47,53 +47,34 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="close"> Cancelar
+              <v-btn  color="#15ADC7" light @click="close"> Cancelar
               </v-btn>
-              <v-btn color="blue darken-1" text @click="save"> Guardar
+              <v-btn  color="#15ADC7" light @click="save"> Guardar
               </v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
+        <!-- MODAL DE ELIMINAR -->
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
-            <v-card-title class="headline">¿Estas seguro de eliminar la pregunta?</v-card-title>
+            <v-card-title class="headline title-modal">¿Estas seguro de eliminar la pregunta?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue" light text @click="closeDelete">No</v-btn>
-              <v-btn color="blue" light text @click="deleteItemConfirm">Si</v-btn>
+              <v-btn color="#FF5252" light @click="closeDelete">No</v-btn>
+              <v-btn color="#4CAF50" light @click="deleteItemConfirm">Si</v-btn>
               <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
         </v-dialog>
-        <v-dialog v-model="dialogView" min-width="800px">
+        <!-- MODAL DE OCULTAR -->
+        <v-dialog v-model="dialogView" max-width="500px">
           <v-card>
-            <v-card-title class="headline">Pregunta</v-card-title>
+            <v-card-title class="headline title-modal">¿Estas seguro de ocultar la pregunta?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <v-col cols="12" sm="6" md="4">
-                      <p v-html="editedItem.name"></p>
-                    </v-col>
-                    <v-col cols="12" sm="6"  md="4">
-                      <p v-html="editedItem.fecha"></p>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <p v-html="editedItem.modulo"></p>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <p v-html="editedItem.categoria"></p>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field v-model="editedItem.pregunta" label="Pregunta"></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6" md="4">
-                      <v-text-field v-model="editedItem.respuesta" label="Respuesta"></v-text-field>
-                    </v-col>
-                  </v-row>
-                </v-container>
-            </v-card-text>
+              <v-btn color="#FF5252" light @click="closeView">No</v-btn>
+              <v-btn color="#4CAF50" light @click="viewItemConfirm">Si</v-btn>
+              <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -176,6 +157,7 @@
 
     methods: {
       initialize () {
+
         this.desserts = [
           {
             name:1,
@@ -183,7 +165,8 @@
             modulo:'Configuración',
             categoria:'Login',
             pregunta:'Como valido mi código de conexión',
-            respuesta:'Lorem ipsum dolor sitamet, consetetur'
+            respuesta:'Lorem ipsum dolor sitamet, consetetur',
+            disabled: false,
           },
           {
             name:2,
@@ -191,7 +174,8 @@
             modulo:'Configuración',
             categoria:'Login',
             pregunta:'Como valido mi código de conexión',
-            respuesta:'Lorem ipsum dolor sitamet, consetetur'
+            respuesta:'Lorem ipsum dolor sitamet, consetetur',
+            disabled: false,
           },
           {
             name:3,
@@ -199,7 +183,8 @@
             modulo:'Configuración',
             categoria:'Otro',
             pregunta:'Como valido mi código de conexión',
-            respuesta:'Lorem ipsum dolor sitamet, consetetur'
+            respuesta:'Lorem ipsum dolor sitamet, consetetur',
+            disabled: true,
           },
         ]
       },
@@ -243,6 +228,14 @@
           this.editedIndex = -1
         })
       },
+      closeView () {
+        this.dialogView = false
+        this.itemDisable = true
+      },
+      viewItemConfirm () {
+        this.desserts.splice(this.editedIndex, 1)
+        this.closeDelete()
+      },
 
       save () {
         if (this.editedIndex > -1) {
@@ -255,3 +248,6 @@
     },
   }
 </script>
+<style lang="scss" scoped>
+@import './tabla-comp.scss';
+</style>

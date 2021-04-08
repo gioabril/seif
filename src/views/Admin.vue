@@ -2,8 +2,8 @@
   <div class="admin general-container">
     <v-container>
       <v-layout row wrap justify-center align-center>
-        <v-flex xs12 class="cont-title">
-          <span>Url ruta / completa</span>
+        <v-flex xs12 ml-3 class="cont-title">
+          <span>Admin / Preguntas</span>
         </v-flex>
       </v-layout>
       <v-layout row wra>

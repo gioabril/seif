@@ -18,7 +18,7 @@
               <img :src="require('@/assets/icons/'+item.imgurl+'')" alt="">
             </div>
             <p>{{item.tituloitem}}</p>
-            <v-btn class="item-btn" color="orange" v-bind="attrs" v-on="on">ver</v-btn>
+            <v-btn class="item-btn" color="orange" v-bind="attrs" v-on="on" to="/admin">ver</v-btn>
           </div>
         </v-flex>
       </v-layout>
